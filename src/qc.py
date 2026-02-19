@@ -154,3 +154,11 @@ def westgard_check (analyzer_name):
 
 
     pass
+
+def perform_westguard_analysis(data: pd.Series, mean: float, sd: float) -> tuple[pd.Series, pd.Series]:
+    # Our rules that we write will live here.
+    # The code here will be developed in the cells below.
+    # And this function will eventually live in src/qc.py
+    warnings_mask = (data > mean + 2*sd) | (data < mean - 2*sd) # Example 1S2 rule
+    failures_mask = (data > mean + 3*sd) | (data < mean - 3*sd) # Example 1S3 rule
+    return warnings_mask, failures_mask
